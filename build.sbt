@@ -10,4 +10,6 @@ libraryDependencies ++= Seq(
   javaJdbc,
   cache,
   javaWs
+  "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final" // replace by your jpa implementation
+
 )

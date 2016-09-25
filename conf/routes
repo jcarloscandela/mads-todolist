@@ -13,4 +13,4 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 GET     /saludo                     controllers.ApplicationController.saludo(nombre: String)
-GET     /crearUsuario               controllers.ApplicationController.crearUsuario()                                  
+GET     /usuarios/nuevo              controllers.ApplicationController.nuevo()                                  

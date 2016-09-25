@@ -7,7 +7,7 @@ public class ApplicationController extends Controller {
     return ok(saludo.render(nombre));
   }
 
-  public Result crearUsuario(){
-    return ok(crearUsuario.render());
+  public Result nuevo(){
+    return ok(nuevo.render());
   }
 }
