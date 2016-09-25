@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("bootstrap/css/bootstrap.css")">
+    <title>Crear Usuario</title>
+
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1>Crear Usuario</h1>
+    </div>
+
+    <div class="container col-xs-4"></div>
+    <div class="container col-xs-4" >
+      <form>
+        <div class="form-group">
+          <label for="login"> Login </label>
+          <input class="form-control" type="text" id="login">
+        </div>
+        <div class="form-group">
+          <label for="Nombre"> Nombre </label>
+          <input class="form-control" type="text" id="Nombre">
+        </div>
+        <div class="form-group">
+          <label for="Apellidos"> Apellidos </label>
+          <input class="form-control" type="text" id="Apellidos">
+        </div>
+        <div class="form-group">
+          <label for="Correo"> Correo </label>
+          <input class="form-control" type="text" id="Correo">
+        </div>
+        <div class="form-group">
+          <label for="FechaNac"> Fecha nacimiento (dd-mm-aaaa) </label>
+          <input class="form-control" type="text" id="FechaNac">
+        </div>
+        <div class="form-group">
+          <button type="button" name="guardar" class="btn btn-primary">Guardar</button>
+          <button type="button" name="cancelar" class="btn btn-primary">Cancelar</button>
+        </div>
+      </form>
+    </div>
+
+  </body>
+</html>
