@@ -15,7 +15,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /saludo                     controllers.ApplicationController.saludo(nombre: String)
 GET     /usuarios                   controllers.UsuariosController.listaUsuarios()
 GET     /usuarios/nuevo             controllers.UsuariosController.formularioNuevoUsuario()
-POST    /usuarios/nuevo             controllers.UsuariosController.grabaNuevoUsuario()
+POST    /usuarios/nuevo             controllers.UsuariosController.guardaNuevoUsuario()
 POST    /usuarios/modifica          controllers.UsuariosController.grabaUsuarioModificado()
 GET     /usuarios/:id               controllers.UsuariosController.detalleUsuario(id: String)
 GET     /usuarios/:id/editar        controllers.UsuariosController.editaUsuario(id: String)

@@ -23,7 +23,7 @@ public class UsuariosController extends Controller {
     public Result listaUsuarios() {
         // Obtenemos el mensaje flash guardado en la petición
         // por el controller grabaUsuario
-        String mensaje = flash("grabaUsuario");
+        String mensaje = flash("guardaUsuario");
         List<Usuario> usuarios = UsuariosService.findAllUsuarios();
         return ok(listaUsuarios.render(usuarios, mensaje));
     }
@@ -36,16 +36,16 @@ public class UsuariosController extends Controller {
     @Transactional
     // Añade un nuevo usuario en la BD y devuelve código HTTP
     // de redirección a la página de listado de usuarios
-    public Result grabaNuevoUsuario() {
+    public Result guardaNuevoUsuario() {
 
         Form<Usuario> usuarioForm = formFactory.form(Usuario.class).bindFromRequest();
         if (usuarioForm.hasErrors()) {
             return badRequest(formCreacionUsuario.render(usuarioForm, "Hay errores en el formulario"));
         }
         Usuario usuario = usuarioForm.get();
-        Logger.debug("Usuario a grabar: " + usuario.toString());
-        usuario = UsuariosService.grabaUsuario(usuario);
-        flash("grabaUsuario", "El usuario se ha grabado correctamente");
+        Logger.debug("Usuario a guardar: " + usuario.toString());
+        usuario = UsuariosService.guardaUsuario(usuario);
+        flash("guardaUsuario", "El usuario se ha guardado correctamente");
         return redirect(controllers.routes.UsuariosController.listaUsuarios());
     }
 

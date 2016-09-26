@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import models.*;
 
 public class UsuariosService {
-    public static Usuario grabaUsuario(Usuario usuario) {
+    public static Usuario guardaUsuario(Usuario usuario) {
         return UsuarioDAO.create(usuario);
     }
 

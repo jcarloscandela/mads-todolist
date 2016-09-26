@@ -6,7 +6,7 @@
         </div>
     }
     <h1>Crear usuario</h1>
-    @helper.form(action = routes.UsuariosController.grabaNuevoUsuario()) {
+    @helper.form(action = routes.UsuariosController.guardaNuevoUsuario()) {
         <fieldset>
             <legend>Usuario nuevo</legend>
             @helper.inputText(usuarioForm("login"), '_label -> "Login")
