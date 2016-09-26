@@ -13,4 +13,10 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 GET     /saludo                     controllers.ApplicationController.saludo(nombre: String)
-GET     /usuarios/nuevo              controllers.ApplicationController.nuevo()                                  
+GET     /usuarios                   controllers.UsuariosController.listaUsuarios()
+GET     /usuarios/nuevo             controllers.UsuariosController.formularioNuevoUsuario()
+POST    /usuarios/nuevo             controllers.UsuariosController.guardaNuevoUsuario()
+POST    /usuarios/modifica          controllers.UsuariosController.grabaUsuarioModificado()
+GET     /usuarios/:id               controllers.UsuariosController.detalleUsuario(id: String)
+GET     /usuarios/:id/editar        controllers.UsuariosController.editaUsuario(id: String)
+DELETE  /usuarios/:id               controllers.UsuariosController.borraUsuario(id: String)
