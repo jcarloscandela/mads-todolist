@@ -19,10 +19,12 @@ public class UsuariosController extends Controller {
     @Inject FormFactory formFactory;
 
     @Transactional(readOnly = true)
-    // Devuelve una página con la lista de usuarios
+    // Devuelve una lista con todos los usuarios
     public Result listaUsuarios() {
-        // Obtenemos el mensaje flash guardado en la petición
-        // por el controller grabaUsuario
+
+        //Esto es una especie de cookie que cuando se crea un usuario
+        //al volver a la lista de usuario, muestra el mensaje
+        //Logger.debug("Muestro la lista de usuarios");
         String mensaje = flash("guardaUsuario");
         List<Usuario> usuarios = UsuariosService.findAllUsuarios();
         return ok(listaUsuarios.render(usuarios, mensaje));
