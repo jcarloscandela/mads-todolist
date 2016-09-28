@@ -23,7 +23,9 @@
             <tr>
               <th>Id</th>
               <th>Login</th>
-              <th>Options</th>
+              <th>Nombre</th>
+              <th>Apellidos </th>
+              <th>Opciones </th>
             </tr>
           </thead>
           <tbody>
@@ -33,8 +35,10 @@
             <tr>
               <td>@usuario.id</td>
               <td>@usuario.login</td>
+              <td>@usuario.nombre </td>
+              <td>@usuario.apellidos </td>
               <td>
-                <a onmouseover="" style="cursor: pointer;" onclick="del('@routes.UsuariosController.detalleUsuario(usuario.id)')">
+                <a onmouseover="" style="cursor: pointer;" href="@routes.UsuariosController.detalleUsuario(usuario.id)">
                   <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
 
                 <a onmouseover="" style="cursor: pointer;" onclick="del('@routes.UsuariosController.editaUsuario(usuario.id)')">
@@ -51,12 +55,10 @@
                 <a href="@routes.UsuariosController.guardaNuevoUsuario()">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
               </td>
-              <td>
-
-              </td>
-              <td>
-                
-              </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
             </tr>
           </tbody>
         </table>

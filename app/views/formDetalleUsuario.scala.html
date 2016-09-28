@@ -1,0 +1,32 @@
+@(usuario: Usuario)
+@main("Detalle usuario") {
+
+    <h2>Detalles del usuario @usuario.id </h2>
+
+	<table >
+	  <tr>
+	    <td> <h4> Login:</h4> </td>
+	    <td> @usuario.login </td>
+	  </tr>
+
+	  <tr>
+	    <td> <h4> Nombre:</h4> </td>
+	    <td> @usuario.nombre </td>
+	  </tr>
+
+	  <tr>
+	    <td> <h4> Apellidos:</h4> </td>
+	    <td> @usuario.apellidos </td>
+	  </tr>
+
+	  <tr>
+	    <td> <h4> Correo electronico:</h4> </td>
+	    <td> @usuario.eMail </td>
+	  </tr>
+	  <tr>
+	    <td> <h4>Fecha de nacimiento:</h4> </td>
+	    <td> @usuario.fechaNacimiento</td>
+	  </tr>
+	</table>
+
+}

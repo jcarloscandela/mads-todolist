@@ -58,7 +58,10 @@ public class UsuariosController extends Controller {
 
     @Transactional
     public Result detalleUsuario(String id) {
-        return status(Http.Status.NOT_IMPLEMENTED);
+      Usuario usuario = UsuariosService.findUsuario(id);
+          if(usuario == null)
+              return notFound(String.format("Usuario %s no existe", id));
+      return ok(formDetalleUsuario.render(usuario));
     }
 
     @Transactional
