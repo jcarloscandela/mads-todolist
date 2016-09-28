@@ -24,7 +24,7 @@ public class UsuariosController extends Controller {
 
         //Esto es una especie de cookie que cuando se crea un usuario
         //al volver a la lista de usuario, muestra el mensaje
-        //Logger.debug("Muestro la lista de usuarios");
+        Logger.debug("Muestro la lista de usuarios");
         String mensaje = flash("guardaUsuario");
         List<Usuario> usuarios = UsuariosService.findAllUsuarios();
         return ok(listaUsuarios.render(usuarios, mensaje));

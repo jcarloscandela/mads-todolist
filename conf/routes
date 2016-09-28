@@ -16,7 +16,7 @@ GET     /saludo                     controllers.ApplicationController.saludo(nom
 GET     /usuarios                   controllers.UsuariosController.listaUsuarios()
 GET     /usuarios/nuevo             controllers.UsuariosController.formularioNuevoUsuario()
 POST    /usuarios/nuevo             controllers.UsuariosController.guardaNuevoUsuario()
-POST    /usuarios/modifica          controllers.UsuariosController.grabaUsuarioModificado()
+POST    /usuarios/modifica          controllers.UsuariosController.guardaUsuarioModificado()
 GET     /usuarios/:id               controllers.UsuariosController.detalleUsuario(id: String)
 GET     /usuarios/:id/editar        controllers.UsuariosController.editaUsuario(id: String)
 DELETE  /usuarios/:id               controllers.UsuariosController.borraUsuario(id: String)
