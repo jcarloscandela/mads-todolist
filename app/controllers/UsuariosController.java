@@ -25,7 +25,8 @@ public class UsuariosController extends Controller {
         //Esto es una especie de cookie que cuando se crea un usuario
         //al volver a la lista de usuario, muestra el mensaje
         Logger.debug("Muestro la lista de usuarios");
-        String mensaje = flash("guardaUsuario");
+        String mensaje = flash("mensaje");
+
         List<Usuario> usuarios = UsuariosService.findAllUsuarios();
         return ok(listaUsuarios.render(usuarios, mensaje));
     }
@@ -47,13 +48,24 @@ public class UsuariosController extends Controller {
         Usuario usuario = usuarioForm.get();
         Logger.debug("Usuario a guardar: " + usuario.toString());
         usuario = UsuariosService.guardaUsuario(usuario);
-        flash("guardaUsuario", "El usuario se ha guardado correctamente");
+        flash("mensaje", "El usuario se ha guardado correctamente");
         return redirect(controllers.routes.UsuariosController.listaUsuarios());
     }
 
     @Transactional
     public Result grabaUsuarioModificado() {
-        return status(Http.Status.NOT_IMPLEMENTED);
+
+        Form<Usuario> usuarioForm = Form.form(Usuario.class).bindFromRequest();
+    		if (usuarioForm.hasErrors()){
+    			return badRequest(formModificacionUsuario.render(usuarioForm, "Hay errores en el formulario"));
+        }
+    		Usuario usuario = usuarioForm.get();
+        Logger.debug("Usuario a modificar: " + usuario.toString());
+        //Controlar que no se ponga un mismo login al guardar
+
+    		usuario = UsuariosService.modificaUsuario(usuario);
+    		flash("mensaje", "El usuario se ha modificado correctamente");
+        return redirect(controllers.routes.UsuariosController.listaUsuarios());
     }
 
     @Transactional
@@ -68,7 +80,15 @@ public class UsuariosController extends Controller {
 
     @Transactional
     public Result editaUsuario(String id) {
-        return status(Http.Status.NOT_IMPLEMENTED);
+        Usuario usuario = UsuariosService.findUsuario(id);
+            if(usuario != null){
+              Form<Usuario> formulario = Form.form(Usuario.class);
+              Form<Usuario> usuarioForm = formulario.fill(usuario);
+
+              return ok(formModificacionUsuario.render(usuarioForm,""));
+            }else{
+              return notFound(String.format("El usuario con id: " + id + ", no existe y no se puede modificar"));
+            }
     }
 
     @Transactional
