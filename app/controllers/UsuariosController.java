@@ -59,9 +59,11 @@ public class UsuariosController extends Controller {
     @Transactional
     public Result detalleUsuario(String id) {
       Usuario usuario = UsuariosService.findUsuario(id);
-          if(usuario == null)
-              return notFound(String.format("Usuario %s no existe", id));
-      return ok(formDetalleUsuario.render(usuario));
+          if(usuario != null){
+            return ok(formDetalleUsuario.render(usuario));
+          }else{
+            return notFound(String.format("El usuario con id: " + id + ", no existe"));
+          }
     }
 
     @Transactional

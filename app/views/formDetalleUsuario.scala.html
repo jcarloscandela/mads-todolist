@@ -1,32 +1,16 @@
 @(usuario: Usuario)
 @main("Detalle usuario") {
-
-    <h2>Detalles del usuario @usuario.id </h2>
-
-	<table >
-	  <tr>
-	    <td> <h4> Login:</h4> </td>
-	    <td> @usuario.login </td>
-	  </tr>
-
-	  <tr>
-	    <td> <h4> Nombre:</h4> </td>
-	    <td> @usuario.nombre </td>
-	  </tr>
-
-	  <tr>
-	    <td> <h4> Apellidos:</h4> </td>
-	    <td> @usuario.apellidos </td>
-	  </tr>
-
-	  <tr>
-	    <td> <h4> Correo electronico:</h4> </td>
-	    <td> @usuario.eMail </td>
-	  </tr>
-	  <tr>
-	    <td> <h4>Fecha de nacimiento:</h4> </td>
-	    <td> @usuario.fechaNacimiento</td>
-	  </tr>
-	</table>
+<div class="container">
+  <h2>Detalle de usuario: @usuario.id </h2>
+  <ul>
+    <li><b>Login: </b>@usuario.login</li>
+    <li><b>Nombre: </b>@usuario.nombre</li>
+    <li><b>Apellidos: </b>@usuario.apellidos</li>
+    <li><b>Email: </b>@usuario.eMail</li>
+    <li><b>Fecha de nacimiento: </b>@usuario.fechaNacimiento</li>
+    <p><a class="btn btn-primary" href="@routes.UsuariosController.editaUsuario(usuario.id)">Editar</a></p>
+    <p><a class="btn btn-primary" href="@routes.UsuariosController.listaUsuarios()">Volver</a></p>
+  </ul>
+</div>
 
 }
