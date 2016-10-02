@@ -93,7 +93,13 @@ public class UsuariosController extends Controller {
 
     @Transactional
     public Result borraUsuario(String id) {
-        return status(Http.Status.NOT_IMPLEMENTED);
+      Logger.debug("Intento de borrar xd");
+      if (UsuariosService.deleteUsuario(id)){
+        return ok();//redirect(controllers.routes.UsuariosController.listaUsuarios());
+
+      }else{
+        return notFound(String.format("El usuario con id: " + id + ", no existe y no se puede borrar"));
+     }
     }
 
 }
