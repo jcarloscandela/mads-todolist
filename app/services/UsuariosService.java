@@ -23,8 +23,9 @@ public class UsuariosService {
     }
 
     public static boolean deleteUsuario(String id) {
-        // ToDo
-        return false;
+        UsuarioDAO.delete(id);
+          Logger.debug("Usuario con id: " + id + " ha sido borrado");
+        return true;
     }
 
     public static List<Usuario> findAllUsuarios() {
