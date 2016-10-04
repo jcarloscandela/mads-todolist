@@ -3,39 +3,5 @@ Bienvenido a la aplicación ToDo-List
 
 Para el registro he creado un form similar al form de Creación de usuario pero con una ruta nueva, que se puede acceder desde /registro
 En el método me he centrado en controlar que el usuario nuevo que se registre, no tenga el mismo login que un usuario ya registrado
-´´´
-public Result registroNuevoUsuario() {
-
-    Form<Usuario> usuarioForm = formFactory.form(Usuario.class).bindFromRequest();
-    if (usuarioForm.hasErrors()) {
-        return badRequest(formRegistroUsuario.render(usuarioForm, "Hay errores en el formulario"));
-    }else{
-
-      Usuario usuario = usuarioForm.get();
-      Usuario usuarioData = UsuariosService.loginUsuario(usuario);
-
-      if(usuarioData.login != null){
-        if(usuarioData.password == null){
-          Logger.debug("La password es null");
-          usuario.id = usuarioData.id;
-          usuario = UsuariosService.modificaUsuario(usuario);
-
-          flash("mensaje", "El usuario se ha modificado correctamente su contraseña");
-          return redirect(controllers.routes.UsuariosController.login());
-
-        }else{
-          return badRequest(formRegistroUsuario.render(usuarioForm, "El usuario ya existe"));
-        }
-      }
-
-      Logger.debug("Usuario a guardar: " + usuario.toString());
-      usuario = UsuariosService.guardaUsuario(usuario);
-      flash("mensaje", "El usuario se ha registrado correctamente");
-      return redirect(controllers.routes.UsuariosController.login());
 
 
-    }
-
-}
-
-´´´
