@@ -125,19 +125,23 @@ public class UsuariosController extends Controller {
       }else{
 
         Usuario usuario = usuarioForm.get();
-        usuario = UsuariosService.loginUsuario(usuario);
+        Usuario usuarioData = UsuariosService.loginUsuario(usuario);
         Logger.debug("Autenticación de: " +  usuario.toString());
 
-        if(usuario.login == null){
+        if(usuarioData == null){
             return badRequest(login.render(usuarioForm,  "No existe el usuario"));
         }else{
 
           if(usuario.login.equals("admin") && usuario.password.equals("admin")){
             return redirect(controllers.routes.UsuariosController.listaUsuarios());
           }else{
-            usuario = UsuariosService.modificaUsuario(usuario);
-        		flash("autenticar", "El usuario se ha autenticado correctamente");
-        		return redirect(controllers.routes.UsuariosController.bienvenida());
+            if(!usuarioData.password.equals(usuario.password)){
+              return badRequest(login.render(usuarioForm,  "La contraseña es incorrecta"));
+            }else{
+              		//flash("autenticar", "El usuario se ha autenticado correctamente");
+                  flash("mensaje", usuarioData.nombre);
+              		return redirect(controllers.routes.UsuariosController.bienvenida());
+            }
           }
         }
   	}
@@ -145,7 +149,8 @@ public class UsuariosController extends Controller {
 
     @Transactional
     public Result bienvenida(){
-      return ok(bienvenida.render());
+        String mensaje = flash("mensaje");
+      return ok(bienvenida.render(mensaje));
     }
 
     @Transactional
