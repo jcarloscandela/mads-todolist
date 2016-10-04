@@ -5,13 +5,13 @@ Para el registro he creado un form similar al form de Creación de usuario pero 
 En el método me he centrado en controlar que el usuario nuevo que se registre, no tenga el mismo login que un usuario ya registrado
 El funcionamiento es sencillo, si el usuario rellena correctamente los campos, antes de guardar el usuario en la BD, se comprueba que
 exista, con el siguiente método
-´´´
+```
 Usuario usuarioData = UsuariosService.loginUsuario(usuario);
-´´´
+```
 loginUsuario se encarga de devolver el Usuario de nuestra base de datos
 
-´´´
+```
   public static Usuario loginUsuario(Usuario usuario){
       return (Usuario) JPA.em().createQuery("select u from Usuario u where u.login =" + "'" + usuario.login + "'").getSingleResult(); 
    }
-´´
+```
