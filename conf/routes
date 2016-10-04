@@ -20,3 +20,8 @@ POST    /usuarios/modifica          controllers.UsuariosController.grabaUsuarioM
 GET     /usuarios/:id               controllers.UsuariosController.detalleUsuario(id: String)
 GET     /usuarios/:id/editar        controllers.UsuariosController.editaUsuario(id: String)
 DELETE  /usuarios/:id               controllers.UsuariosController.borraUsuario(id: String)
+GET 	  /login						          controllers.UsuariosController.login()
+POST    /login            				  controllers.UsuariosController.autenticar()
+GET 	  /bienvenida						      controllers.UsuariosController.bienvenida()
+GET     /registro                   controllers.UsuariosController.formularioRegistroUsuario()
+POST    /registro                   controllers.UsuariosController.registroNuevoUsuario()

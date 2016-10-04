@@ -44,12 +44,21 @@ public class UsuariosController extends Controller {
         Form<Usuario> usuarioForm = formFactory.form(Usuario.class).bindFromRequest();
         if (usuarioForm.hasErrors()) {
             return badRequest(formCreacionUsuario.render(usuarioForm, "Hay errores en el formulario"));
+        }else{
+
+          Usuario usuario = usuarioForm.get();
+
+          Usuario usuarioData = UsuariosService.loginUsuario(usuario);//nuevo
+          if(usuarioData.login != null){
+              return badRequest(formCreacionUsuario.render(usuarioForm, "El usuario ya existe"));
+          }
+
+          Logger.debug("Usuario a guardar: " + usuario.toString());
+          usuario = UsuariosService.guardaUsuario(usuario);
+          flash("mensaje", "El usuario se ha guardado correctamente");
+          return redirect(controllers.routes.UsuariosController.listaUsuarios());
         }
-        Usuario usuario = usuarioForm.get();
-        Logger.debug("Usuario a guardar: " + usuario.toString());
-        usuario = UsuariosService.guardaUsuario(usuario);
-        flash("mensaje", "El usuario se ha guardado correctamente");
-        return redirect(controllers.routes.UsuariosController.listaUsuarios());
+
     }
 
     @Transactional
@@ -93,13 +102,92 @@ public class UsuariosController extends Controller {
 
     @Transactional
     public Result borraUsuario(String id) {
-      Logger.debug("Intento de borrar xd");
-      if (UsuariosService.deleteUsuario(id)){
-        return ok();//redirect(controllers.routes.UsuariosController.listaUsuarios());
+        //Logger.debug("Intento de borrar xd");
+        if (UsuariosService.deleteUsuario(id)){
+          return ok();//redirect(controllers.routes.UsuariosController.listaUsuarios());
 
-      }else{
-        return notFound(String.format("El usuario con id: " + id + ", no existe y no se puede borrar"));
-     }
+        }else{
+          return notFound(String.format("El usuario con id: " + id + ", no existe y no se puede borrar"));
+        }
     }
+
+    @Transactional
+    public Result login() {
+      return ok(login.render(Form.form(Usuario.class),""));
+    }
+
+    @Transactional
+    public Result autenticar(){
+  		Form<Usuario> usuarioForm = Form.form(Usuario.class).bindFromRequest();
+
+  		if (usuarioForm.hasErrors()){
+  			return badRequest(login.render(usuarioForm, "Login erroneo"));
+      }else{
+
+        Usuario usuario = usuarioForm.get();
+        usuario = UsuariosService.loginUsuario(usuario);
+        Logger.debug("Autenticación de: " +  usuario.toString());
+
+        if(usuario.login == null){
+            return badRequest(login.render(usuarioForm,  "No existe el usuario"));
+        }else{
+
+          if(usuario.login.equals("admin") && usuario.password.equals("admin")){
+            return redirect(controllers.routes.UsuariosController.listaUsuarios());
+          }else{
+            usuario = UsuariosService.modificaUsuario(usuario);
+        		flash("autenticar", "El usuario se ha autenticado correctamente");
+        		return redirect(controllers.routes.UsuariosController.bienvenida());
+          }
+        }
+  	}
+  }
+
+    @Transactional
+    public Result bienvenida(){
+      return ok(bienvenida.render());
+    }
+
+    @Transactional
+    public Result formularioRegistroUsuario() {
+        return ok(formRegistroUsuario.render(formFactory.form(Usuario.class),""));
+    }
+
+    @Transactional
+    public Result registroNuevoUsuario() {
+
+        Form<Usuario> usuarioForm = formFactory.form(Usuario.class).bindFromRequest();
+        if (usuarioForm.hasErrors()) {
+            return badRequest(formRegistroUsuario.render(usuarioForm, "Hay errores en el formulario"));
+        }else{
+
+          Usuario usuario = usuarioForm.get();
+          Usuario usuarioData = UsuariosService.loginUsuario(usuario);
+
+          if(usuarioData.login != null){
+            if(usuarioData.password == null){
+              Logger.debug("La password es null");
+              usuario.id = usuarioData.id;
+              usuario = UsuariosService.modificaUsuario(usuario);
+
+              flash("mensaje", "El usuario se ha modificado correctamente su contraseña");
+              return redirect(controllers.routes.UsuariosController.login());
+
+            }else{
+              return badRequest(formRegistroUsuario.render(usuarioForm, "El usuario ya existe"));
+            }
+          }
+
+          Logger.debug("Usuario a guardar: " + usuario.toString());
+          usuario = UsuariosService.guardaUsuario(usuario);
+          flash("mensaje", "El usuario se ha registrado correctamente");
+          return redirect(controllers.routes.UsuariosController.login());
+
+
+        }
+
+    }
+
+
 
 }

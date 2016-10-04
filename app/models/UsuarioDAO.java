@@ -37,4 +37,18 @@ public class UsuarioDAO {
                   "select u from Usuario u ORDER BY id", Usuario.class);
         return query.getResultList();
     }
+
+    public static Usuario loginUsuario(Usuario usuario){
+      try{
+        return (Usuario) JPA.em().createQuery("select u from Usuario u where u.login =" + "'" + usuario.login + "'").getSingleResult()	;
+      }
+      catch(Exception NoResultException){
+        Usuario user = new Usuario();
+        if(usuario.login.equals("admin") && usuario.password.equals("admin"))
+          return usuario;
+        return user;
+      }
+
+    }
+
 }
