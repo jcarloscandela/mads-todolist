@@ -1,4 +1,4 @@
-Bienvenido a la aplicación ToDo-List
+# Bienvenido a la aplicación ToDo-List
 
 -Funcionalidad registro
 
@@ -6,4 +6,4 @@ Para el registro he creado un form similar al form de Creación de usuario pero 
 En el método me he centrado en controlar que el usuario nuevo que se registre, no tenga el mismo login que un usuario ya registrado
 El funcionamiento es sencillo, si el usuario rellena correctamente los campos, antes de guardar el usuario en la BD, se comprueba que
 exista, con el siguiente método
-<img src="http://www.w3schools.com/html/pic_mountain.jpg >
+```git commit -m "Versión inicial"```
