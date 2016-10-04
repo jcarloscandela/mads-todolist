@@ -22,6 +22,7 @@ De esta forma podemos saber si el usuario existe o si existe pero no dispone de 
 mandar un error de que "El usuario ya existe", manda un mensaje de "El usuario ha modificado correctamente su contraseña".
 
 Una vez registrados, la página nos redirige al login otra vez, para que volvamos a introducir los datos. 
+### Código de registro
 
 ## Funcionalidad login
 El login tiene un diseño simple, con dos campos, uno para introducir el nick del usuario y otro para la contraseña.
@@ -37,6 +38,8 @@ Si la contraseña es incorrecta nos lanzará el error:
 
 Por otra parte si queremos registrarnos, existe el botón de Registrarse
 
+### Código de login
+
 ## Administración
 Para acceder a la lista de usuarios, el usuario que acceda a la página debe ser admin, accediendo con una cuenta predeterminada (admin, admin). Si nos logueamos con esos datos, nos llevará directamente a la lista de usuarios (en un futuro se implementará un panel de control), en la lista de usuarios se puede borrar,modificar o crear usuarios. Para controlar que el que entra es admin lo he hecho mediante el siguiente código, aunque posteriormente se debería crear un subclase de usuarios para los administradores, moderadores, etc.
 ```
@@ -44,4 +47,5 @@ Para acceder a la lista de usuarios, el usuario que acceda a la página debe ser
     return redirect(controllers.routes.UsuariosController.listaUsuarios());
  }
  ```
+ 
 
