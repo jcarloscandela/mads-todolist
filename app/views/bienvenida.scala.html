@@ -1,5 +1,10 @@
+@(mensaje: String)
 @main("Login") {
 
-    <h1>Bienvenido</h1>
+    @if(mensaje != null) {
+        <div>
+          <h1>Bienvenido  @mensaje</h1>
+        </div>
+    }
 
 }
