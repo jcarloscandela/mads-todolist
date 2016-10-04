@@ -9,7 +9,7 @@ El siguiente método es el encargado del registro
 <img src="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/14606401_10207131078055997_2875591396215274111_n.jpg?oh=ed1e844e0ebfbd7572f2125c15552ae7&oe=58AA54FB" height="300">
 
 Para controlar que los usuarios registrados no tengan el mismo login que otros usuarios, hago una llamada a la base de datos con
-```Usuario usuarioData = UsuariosService.loginUsuario(usuario)```
+``` Usuario usuarioData = UsuariosService.loginUsuario(usuario) ```
 En caso de que se inserte el mismo usuario genera un error:
 
 <img src="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/14601099_10207131077615986_4774162199891009147_n.jpg?oh=91bfc4a80b9ded84947cdb9ec3f50ff9&oe=58A6D852" height="300">
@@ -24,7 +24,8 @@ mandar un error de que "El usuario ya existe", manda un mensaje de "El usuario h
 Una vez registrados, la página nos redirige al login otra vez, para que volvamos a introducir los datos. 
 
 ## Funcionalidad login
-El login tiene un diseño simple, con dos campos, uno para introducir el nick del usuario y otro para la contraseña
+El login tiene un diseño simple, con dos campos, uno para introducir el nick del usuario y otro para la contraseña.
+Para acceder al login tan sólo hace falta dirigirnos a la dirección /login
 
 Una vez introducidos los datos correctamente si nos logueamos aparace la pagina de bienvenida con el nombre del logueado.
 
@@ -36,5 +37,11 @@ Si la contraseña es incorrecta nos lanzará el error:
 
 Por otra parte si queremos registrarnos, existe el botón de Registrarse
 
-
+## Administración
+Para acceder a la lista de usuarios, el usuario que acceda a la página debe ser admin, accediendo con una cuenta predeterminada (admin, admin). Si nos logueamos con esos datos, nos llevará directamente a la lista de usuarios (en un futuro se implementará un panel de control), en la lista de usuarios se puede borrar,modificar o crear usuarios. Para controlar que el que entra es admin lo he hecho mediante el siguiente código, aunque posteriormente se debería crear un subclase de usuarios para los administradores, moderadores, etc.
+```
+ if(usuario.login.equals("admin") && usuario.password.equals("admin")){
+    return redirect(controllers.routes.UsuariosController.listaUsuarios());
+ }
+ ```
 
