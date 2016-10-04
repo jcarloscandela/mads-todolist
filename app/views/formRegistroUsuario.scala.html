@@ -5,8 +5,8 @@
             @mensaje
         </div>
     }
-    <h1>Crear usuario</h1>
-    @helper.form(action = routes.UsuariosController.guardaNuevoUsuario()) {
+    <h1>Registro de usuario</h1>
+    @helper.form(action = routes.UsuariosController.registroNuevoUsuario()) {
         <fieldset>
             <legend>Usuario nuevo</legend>
             @helper.inputText(usuarioForm("login"), '_label -> "Login")
@@ -17,7 +17,7 @@
             @helper.inputText(usuarioForm("fechaNacimiento"), '_label -> "Fecha nacimiento (dd-mm-aaaa)")
         </fieldset>
         <p>
-        <input type="submit" class="btn btn-primary" value="Guardar">
-        <a class="btn btn-primary" href="@routes.UsuariosController.listaUsuarios()">Cancelar</a></p>
+        <input type="submit" class="btn btn-primary" value="Crear">
+        <a class="btn btn-primary" href="@routes.UsuariosController.login()">Cancelar</a></p>
     }
 }
