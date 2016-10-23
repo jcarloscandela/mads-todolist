@@ -51,4 +51,18 @@ public class UsuarioDAO {
 
     }
 
+    public static Usuario findUsuarioPorLogin(String login) {
+       TypedQuery<Usuario> query = JPA.em().createQuery(
+                 "select u from Usuario u where u.login = :login", Usuario.class);
+       try {
+           Usuario usuario = query.setParameter("login", login).getSingleResult();
+           return usuario;
+       } catch (NoResultException ex) {
+           return null;
+       }
+     }
+
+    public static Integer numUsuarios() {
+         return (Integer) JPA.em().createQuery( "select count(*) from Usuario u").getSingleResult();
+     }
 }
