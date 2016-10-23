@@ -62,7 +62,8 @@ public class UsuarioDAO {
        }
      }
 
+     /*
     public static Integer numUsuarios() {
          return (Integer) JPA.em().createQuery( "select count(*) from Usuario u").getSingleResult();
-     }
+     }*/
 }
