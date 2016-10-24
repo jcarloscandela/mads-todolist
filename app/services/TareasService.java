@@ -16,5 +16,8 @@ public class TareasService {
         }
     }
 
-  
+    public static Tarea grabaTarea(Tarea tarea){
+     return TareaDAO.create(tarea);
+   }
+
 }
