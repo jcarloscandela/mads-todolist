@@ -13,10 +13,7 @@ import models.*;
 
 public class Tareas extends Controller {
 
-    /*
-    *  CRUD de tareas
-    *
-    */
+
     @Transactional(readOnly = true)
 
     // Devuelve una página con la lista de tareas
@@ -63,5 +60,12 @@ public class Tareas extends Controller {
         return redirect(controllers.routes.Tareas.listaTareas(id));
     }
 
+    @Transactional
+    public Result borraTarea(Integer id, Integer idT){
+        if (TareasService.deleteTarea(idT))
+              return redirect(controllers.routes.Tareas.listaTareas(id));
+        else
+            return notFound();
+    }
 
 }
