@@ -38,6 +38,9 @@
               <td>@usuario.nombre </td>
               <td>@usuario.apellidos </td>
               <td>
+                <a onmouseover="" style="cursor: pointer;" href="@routes.Tareas.listaTareas(usuario.id)">
+              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
+              
                 <a onmouseover="" style="cursor: pointer;" href="@routes.UsuariosController.detalleUsuario(usuario.id)">
                   <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
 
