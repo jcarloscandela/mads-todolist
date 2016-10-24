@@ -25,3 +25,5 @@ POST    /login            				  controllers.UsuariosController.autenticar()
 GET 	  /bienvenida						      controllers.UsuariosController.bienvenida()
 GET     /registro                   controllers.UsuariosController.formularioRegistroUsuario()
 POST    /registro                   controllers.UsuariosController.registroNuevoUsuario()
+
+GET		/usuarios/:id/tareas		       controllers.Tareas.listaTareas(id:Integer)
