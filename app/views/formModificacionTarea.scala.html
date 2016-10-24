@@ -1,0 +1,19 @@
+@(tareaForm: Form[Tarea],usuarioId: Integer,mensaje: String)
+@main("Modificar tarea") {
+    @if(mensaje != "") {
+        <div class="alert alert-danger">
+            @mensaje
+        </div>
+    }
+    <h1>Modificar tarea tareaId </h1>
+    @helper.form(action = routes.Tareas.grabaTareaModificada(usuarioId)) {
+        <fieldset>
+            <legend>Tarea @tareaForm("id").value</legend>
+            <input type="hidden" name="id" value='@tareaForm("id").value' >
+            @helper.inputText(tareaForm("descripcion"), '_label -> "Descripcion: ")
+        </fieldset>
+        <p>
+        <input type="submit" class="btn btn-primary" value="Guardar">
+        <a class="btn btn-primary" href="@routes.Tareas.listaTareas(usuarioId)">Cancelar</a></p>
+    }
+}
