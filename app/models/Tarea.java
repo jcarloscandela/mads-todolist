@@ -57,6 +57,8 @@ public class Tarea {
        return true;
    }
    public void nulificaAtributos() {
-           if (descripcion != null && descripcion.isEmpty()) descripcion = null;
-         }
+           if (descripcion != null && descripcion.isEmpty()){
+             descripcion = null;
+           }
+   }
 }
