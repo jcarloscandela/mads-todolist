@@ -21,10 +21,13 @@ public class TareasService {
    }
 
    public static Tarea findTarea(Integer id) {
-   return TareaDAO.find(id);
- }
+     return TareaDAO.find(id);
+  }
    public static Tarea modificaTarea(Tarea tarea) {
        return TareaDAO.update(tarea);
    }
-  
+   public static boolean deleteTarea(Integer id) {
+         TareaDAO.delete(id);
+         return true;
+  }
 }

@@ -31,13 +31,15 @@ public class Tareas extends Controller {
     @Transactional
     public Result grabaNuevaTarea(Integer usuarioId){
         Form<Tarea> tareaForm = Form.form(Tarea.class).bindFromRequest();
-        if (tareaForm.hasErrors())
+        if (tareaForm.hasErrors()){
             return badRequest(formCreacionTarea.render(tareaForm,usuarioId, "Hay errores en el formulario"));
-        Tarea tarea = tareaForm.get();
-        tarea.usuario = UsuariosService.findUsuario(usuarioId);
-        tarea = TareasService.grabaTarea(tarea);
-        flash("creaTarea", "El usuario se ha grabado correctamente");
-        return redirect(controllers.routes.Tareas.listaTareas(usuarioId));
+        }else{
+            Tarea tarea = tareaForm.get();
+            tarea.usuario = UsuariosService.findUsuario(usuarioId);
+            tarea = TareasService.grabaTarea(tarea);
+            flash("creaTarea", "El usuario se ha grabado correctamente");
+            return redirect(controllers.routes.Tareas.listaTareas(usuarioId));
+      }
     }
 
     @Transactional
@@ -51,13 +53,15 @@ public class Tareas extends Controller {
     @Transactional
     public Result grabaTareaModificada(Integer id){
         Form<Tarea> tareaForm = Form.form(Tarea.class).bindFromRequest();
-        if (tareaForm.hasErrors())
+        if (tareaForm.hasErrors()){
             return badRequest(formModificacionTarea.render(tareaForm,id, "Hay errores en el formulario"));
-        Tarea tarea = tareaForm.get();
-        tarea = TareasService.modificaTarea(tarea);
-        tarea.usuario = UsuariosService.findUsuario(id);
-        flash("grabaTareaModificada", "La tarea se ha grabado correctamente");
-        return redirect(controllers.routes.Tareas.listaTareas(id));
+        }else{
+          Tarea tarea = tareaForm.get();
+          tarea = TareasService.modificaTarea(tarea);
+          tarea.usuario = UsuariosService.findUsuario(id);
+          flash("grabaTareaModificada", "La tarea se ha grabado correctamente");
+          return redirect(controllers.routes.Tareas.listaTareas(id));
+      }
     }
 
     @Transactional

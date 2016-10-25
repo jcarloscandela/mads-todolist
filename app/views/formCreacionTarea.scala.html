@@ -5,7 +5,7 @@
             @mensaje
         </div>
     }
-    <h1>Crear tarea</h1>
+    <h2>Crear tarea</h2>
     @helper.form(action = routes.Tareas.grabaNuevaTarea(usuario)) {
         <fieldset>
             @helper.inputText(tareaForm("descripcion"), '_label -> "Descripcion:")

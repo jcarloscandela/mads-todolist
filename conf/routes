@@ -32,4 +32,4 @@ POST	/usuarios/:id/tareas/nueva 	   controllers.Tareas.grabaNuevaTarea(id: Integ
 
 GET  	/usuarios/:id/tareas/:idT/editar  	controllers.Tareas.editarTarea(id: Integer, idT: Integer)
 POST 	/usuarios/:id/tareas/graba 			    controllers.Tareas.grabaTareaModificada(id: Integer)
-DELETE 	/usuarios/:id/tareas/:id/ 		  	controllers.Tareas.borraTarea(id: Integer, idT: Integer)
+DELETE /usuarios/:id/tareas/:id/ controllers.Tareas.borraTarea(id: Integer, idT: Integer)
